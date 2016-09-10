@@ -49,7 +49,7 @@ public class Hero : MonoBehaviour {
 
 		Vector3 off = Utils.ScreenBoundsCheck (bounds, BoundsTest.onScreen);
 		if (off != Vector3.zero) {
-			pos = -off;
+			pos -= off;
 			transform.position = pos;
 		}
 

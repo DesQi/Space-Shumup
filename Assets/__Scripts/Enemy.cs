@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour {
 	public int score = 100;
 
 	public int showDamageForFrames = 2;
+	public float powerUpDropChance = 1f;
 
 	public bool __________;
 
@@ -71,6 +72,14 @@ public class Enemy : MonoBehaviour {
 
 	void OnCollisionEnter(Collision coll) {
 		GameObject other = coll.gameObject;
+
+		// Prevent additional projectiles from causing a destroyed ship to fire additional on-destruction triggers
+		if (health <= 0)
+		{
+			Destroy(other); //< Otherwise, extra shots that strike are never destroyed and float in space indefinitely
+			return;
+		}
+
 		switch (other.tag) {
 		case "ProjectileHero":
 			Projectile p = other.GetComponent<Projectile> ();
@@ -84,7 +93,8 @@ public class Enemy : MonoBehaviour {
 			// Hurt this Enemy
 			ShowDamage();
 			health -= Main.W_DEFS [p.type].damageOnHit;
-			if (health < 0) {
+			if (health <= 0) {
+				Main.S.ShipDestroyed (this);
 				Destroy (this.gameObject);
 			}
 			Destroy (other);
