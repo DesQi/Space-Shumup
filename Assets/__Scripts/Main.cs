@@ -50,6 +50,14 @@ public class Main : MonoBehaviour {
 		Invoke( "SpawnEnemy", enemySpawnRate );
 	}
 
+	public void DelayedRestart( float delay ) {
+		Invoke("Restart", delay);
+	}
+
+	public void Restart() {
+		Application.LoadLevel("__Scene_0");
+	}
+
 	void Start () {
 	
 	}
