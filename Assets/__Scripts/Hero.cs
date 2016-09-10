@@ -84,38 +84,41 @@ public class Hero : MonoBehaviour {
 		}
 	}
 
-	public void AbsorbPowerUp(GameObject go) {
-		PowerUp pu = go.GetComponent<PowerUp> ();
+	public void AbsorbPowerUp( GameObject go ) {
+		PowerUp pu = go.GetComponent<PowerUp>();
 		switch (pu.type) {
-		case WeaponType.shield:
+		case WeaponType.shield: // If it's the shield
 			shieldLevel++;
 			break;
-		default:
-			if (pu.type == weapons [0].type) {
-				Weapon w = GetEmptyWeaponSlot ();
+		default: // If it's any Weapon PowerUp
+			// Check the current weapon type
+			if (pu.type == weapons[0].type) {
+				// then increase the number of weapons of this type
+				Weapon w = GetEmptyWeaponSlot(); // Find an available weapon
 				if (w != null) {
-					w.SetType (pu.type);
+					// Set it to pu.type
+					w.SetType(pu.type);
 				}
 			} else {
-				ClearWeapons ();
-				weapons [0].SetType (pu.type);
+				// If this is a different weapon
+				ClearWeapons();
+				weapons[0].SetType(pu.type);
 			}
 			break;
 		}
+		pu.AbsorbedBy( this.gameObject );
 	}
-
 	Weapon GetEmptyWeaponSlot() {
-		for (int i = 0; i < weapons.Length; i++) {
-			if (weapons [i].type == WeaponType.none) {
-				return weapons [i];
+		for (int i=0; i<weapons.Length; i++) {
+			if ( weapons[i].type == WeaponType.none ) {
+				return( weapons[i] );
 			}
 		}
-		return null;
+		return( null );
 	}
-
 	void ClearWeapons() {
 		foreach (Weapon w in weapons) {
-			w.SetType (WeaponType.none);
+			w.SetType(WeaponType.none);
 		}
 	}
 
