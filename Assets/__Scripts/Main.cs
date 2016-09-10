@@ -1,24 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour {
 	static public Main S;
-//	static public Dictionary<WeaponType, WeaponDefinition> W_DEFS;
+	static public Dictionary<WeaponType, WeaponDefinition> W_DEFS;
 
 	public GameObject[] prefabEnemies;
 	public float enemySpawnPerSecond = 0.5f; 
 	public float enemySpawnPadding = 1.5f;
-//	public WeaponDefinition[] weaponDefinitions;
+	public WeaponDefinition[] weaponDefinitions;
 //
 //	public GameObject prefabPowerUp;
 //	public WeaponType[] powerUpFrequency = new  WeaponType[] {
 //		WeaponType.blaster, WeaponType.blaster,
 //		WeaponType.spread,
 //		WeaponType.shield                    } ;
-//	public bool ________________;
-//
-//	public WeaponType[] activeWeaponTypes;
+	public bool ________________;
+
+	public WeaponType[] activeWeaponTypes;
 
 	private float enemySpawnRate;
 
@@ -31,11 +32,21 @@ public class Main : MonoBehaviour {
 		// Invoke 1 call to SpawnEnemy() in 2 seconds 
 		Invoke( "SpawnEnemy", enemySpawnRate );
 
-//		// A generic Dictionary with WeaponType as the key 
-//		W_DEFS = new Dictionary<WeaponType, WeaponDefinition>(); 
-//		foreach( WeaponDefinition def in weaponDefinitions ) {
-//			W_DEFS[def.type] = def;
-//		}
+		// A generic Dictionary with WeaponType as the key 
+		W_DEFS = new Dictionary<WeaponType, WeaponDefinition>(); 
+		foreach( WeaponDefinition def in weaponDefinitions ) {
+			W_DEFS[def.type] = def;
+		}
+	}
+
+	static public WeaponDefinition GetWeaponDefinition( WeaponType wt ) { 
+		// Check to make sure that the key exists in the Dictionary
+		if (W_DEFS.ContainsKey(wt)) {
+			return( W_DEFS[wt]);
+		}
+		// This will return a definition for WeaponType.none,
+		// which means it has failed to find the WeaponDefinition 
+		return( new WeaponDefinition() );
 	}
 
 	public void SpawnEnemy() {
@@ -49,17 +60,20 @@ public class Main : MonoBehaviour {
 		go.transform.position = pos;
 		Invoke( "SpawnEnemy", enemySpawnRate );
 	}
+		
+	void Start () {
+		activeWeaponTypes = new WeaponType[weaponDefinitions.Length];
+		for ( int i=0; i<weaponDefinitions.Length; i++ ) {
+			activeWeaponTypes[i] = weaponDefinitions[i].type;
+		}
+	}
 
 	public void DelayedRestart( float delay ) {
 		Invoke("Restart", delay);
 	}
 
 	public void Restart() {
-		Application.LoadLevel("__Scene_0");
-	}
-
-	void Start () {
-	
+		SceneManager.LoadScene("__Scene_0");
 	}
 	
 	// Update is called once per frame

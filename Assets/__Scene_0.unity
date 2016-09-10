@@ -193,6 +193,85 @@ MonoBehaviour:
   - {fileID: 1000011975817808, guid: fdb5b4a4480df45f08966c9a7f0695a9, type: 2}
   enemySpawnPerSecond: 0.5
   enemySpawnPadding: 1.5
+  weaponDefinitions:
+  - type: 1
+    letter: B
+    color: {r: 0.7019608, g: 0.7019608, b: 0.7019608, a: 1}
+    projectilePrefab: {fileID: 1000013549609092, guid: cab7c510161a54c1f91a553a4ca930c4,
+      type: 2}
+    projectileColor: {r: 1, g: 1, b: 1, a: 1}
+    damageOnHit: 1
+    continuousDamage: 0
+    delayBetweenShots: 0.2
+    velocity: 50
+  - type: 2
+    letter: S
+    color: {r: 0.122, g: 0.8452069, b: 0.965, a: 1}
+    projectilePrefab: {fileID: 1000013549609092, guid: cab7c510161a54c1f91a553a4ca930c4,
+      type: 2}
+    projectileColor: {r: 0.121568635, g: 0.8470589, b: 0.96470594, a: 1}
+    damageOnHit: 1
+    continuousDamage: 0
+    delayBetweenShots: 0.4
+    velocity: 50
+  - type: 6
+    letter: O
+    color: {r: 0.34901962, g: 0.87843144, b: 0.121568635, a: 1}
+    projectilePrefab: {fileID: 0}
+    projectileColor: {r: 1, g: 1, b: 1, a: 1}
+    damageOnHit: 0
+    continuousDamage: 0
+    delayBetweenShots: 0
+    velocity: 0
+  ________________: 0
+  activeWeaponTypes: 
+--- !u!4 &678344159 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000010166235450, guid: dd4faf04f5c0b47e1a49332e641b6f12,
+    type: 2}
+  m_PrefabInternal: {fileID: 934520197}
+--- !u!1001 &934520197
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1833734370}
+    m_Modifications:
+    - target: {fileID: 4000010166235450, guid: dd4faf04f5c0b47e1a49332e641b6f12, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010166235450, guid: dd4faf04f5c0b47e1a49332e641b6f12, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010166235450, guid: dd4faf04f5c0b47e1a49332e641b6f12, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010166235450, guid: dd4faf04f5c0b47e1a49332e641b6f12, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010166235450, guid: dd4faf04f5c0b47e1a49332e641b6f12, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010166235450, guid: dd4faf04f5c0b47e1a49332e641b6f12, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010166235450, guid: dd4faf04f5c0b47e1a49332e641b6f12, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010166235450, guid: dd4faf04f5c0b47e1a49332e641b6f12, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: dd4faf04f5c0b47e1a49332e641b6f12, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &953896008
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,14 +580,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a5447da8ad74247869bf6d69f4b876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameRestartDelay: 2
   speed: 30
   rollMult: -45
   pitchMult: 30
-  shieldLevel: 1
+  _shieldLevel: 1
   ____________: 0
   bounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
+  lastTriggerGo: {fileID: 0}
 --- !u!4 &1833734370
 Transform:
   m_ObjectHideFlags: 0
@@ -523,6 +604,7 @@ Transform:
   - {fileID: 1482205150}
   - {fileID: 1991203675}
   - {fileID: 953896009}
+  - {fileID: 678344159}
   m_Father: {fileID: 0}
   m_RootOrder: 2
 --- !u!1 &1991203674

@@ -17,6 +17,9 @@ public class Hero : MonoBehaviour {
 
 	public Bounds bounds;
 
+	public delegate void WeaponFireDelegate();
+	public WeaponFireDelegate fireDelegate;
+
 	// Use this for initialization
 	void Awake () {
 		S = this;
@@ -42,6 +45,10 @@ public class Hero : MonoBehaviour {
 		}
 
 		transform.rotation = Quaternion.Euler (yAxis * pitchMult, xAxis * rollMult, 0);
+
+		if (Input.GetAxis ("Jump") == 1 && fireDelegate != null) {
+			fireDelegate ();
+		}
 	}
 
 	public GameObject lastTriggerGo = null;
