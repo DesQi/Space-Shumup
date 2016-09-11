@@ -94,7 +94,7 @@ public class Hero : MonoBehaviour {
 			// Check the current weapon type
 			if (pu.type == weapons[0].type) {
 				// then increase the number of weapons of this type
-				Weapon w = GetEmptyWeaponSlot(); // Find an available weapon
+				Weapon w = GetEmptyWeaponSlot();
 				if (w != null) {
 					// Set it to pu.type
 					w.SetType(pu.type);

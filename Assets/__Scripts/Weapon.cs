@@ -25,7 +25,7 @@ public class WeaponDefinition {
 }
 
 public class Weapon : MonoBehaviour {
-	static public Transform        PROJECTILE_ANCHOR;
+	static public Transform PROJECTILE_ANCHOR;
 	public bool ____________________;
 
 	[SerializeField]

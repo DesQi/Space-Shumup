@@ -45,8 +45,7 @@ public class Main : MonoBehaviour {
 		if (W_DEFS.ContainsKey(wt)) {
 			return( W_DEFS[wt]);
 		}
-		// This will return a definition for WeaponType.none,
-		// which means it has failed to find the WeaponDefinition 
+
 		return( new WeaponDefinition() );
 	}
 
